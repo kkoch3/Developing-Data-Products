@@ -1,0 +1,60 @@
+---
+title: "DDP - Week 3 Project"
+author: "Ken Koch"
+date: "March 22, 2017"
+output: ioslides_presentation
+runtime: shiny
+css: Week3Project.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Background
+
+This presentation uses data from the mtcars data set. It
+is used to demonstrate how to plot data using the plotly
+package. In addition, it uses the R "shiny" package to 
+provide a degree of interactivity, whereby allowing the 
+user to change the parameters of the plot.
+
+## MTCars Interactive Plot
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(plotly)
+library(colorRamps)
+
+chartColors <- blue2green2red(12)
+mtcarsFullNames <- c("Miles/(US) Gallon",
+                        "Number of Cylinders",
+                        "Displacement (cu.in.)",
+                        "Gross Horsepower",
+                        "Rear Axle Ratio",
+                        "Weight (1000 lbs)",
+                        "1/4 Mile Time",
+                        "V or Straight Engine",
+                        "Transmission (0 = automatic, 1 = manual)",
+                        "Number of Forward Gears",
+                        "Number of Carburetors")
+```
+```{r eruptions}
+
+inputPanel(
+  selectInput("mtcColumn", label = "Choose a Variable",
+              choices = names(mtcars), selected = "mpg")
+)
+#match(input$mtcColumn, names(mtcars))
+renderPlotly({
+  plot_ly(x=mtcars[,input$mtcColumn], type = "histogram", marker = list(color=chartColors[match(input$mtcColumn, names(mtcars))+1]),
+          line=list(color="black", width=2)) %>%
+          layout(title="MTCars Data", yaxis=list(title="Frequency"),
+                 xaxis=list(title=mtcarsFullNames[match(input$mtcColumn, names(mtcars))]))
+})
+```
+
+## Thank You
+
+
+
