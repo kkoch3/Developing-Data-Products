@@ -1,0 +1,18 @@
+
+body {
+      background-position: center center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+.section .reveal .state-background {
+    background-image: url("http://roa.h-cdn.co/assets/17/12/320x160/landscape-1490373278-granturismosport.gif");
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+table td tr{
+        border-style: hidden;
+        vertical-align: top;
+}
